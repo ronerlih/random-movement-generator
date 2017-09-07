@@ -50,7 +50,7 @@ font-size: 20px;
 </style>
 </head><body>
 <center><p>random movement generator</p>
-<button onclick="randomMovement()" value="random" style="border:solid 1px cornflowerblue;color:cornflowerblue;
+<button onclick="launchInterval()" value="random" style="border:solid 1px cornflowerblue;color:cornflowerblue;
 ">random movement button</button>
 <br>
 <p>Arms movement is:</p>
@@ -98,8 +98,8 @@ $( document ).ready(function() {
 );
 
  function launchInterval(){
- for(var timeCount = 0.001; timeCount < 2; timeCount += 0.01){
- setTimeout(randomMovement,timeCount);
+	 for(var timeCount = 0.001; timeCount < 4; timeCount += 0.001){
+	 setTimeout(randomMovement, timeCount);
  }
  }
  function randomMovement(){
