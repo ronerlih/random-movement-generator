@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head>
+ <meta charset="UTF-8"> 
+ <meta name="description" content="random movement generator">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+html{
+background-color: beige;
+}
+@media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+body{
+color:cornflowerblue;
+background-color: white;
+max-width: none;
+width:calc(100vw - 14px);
+height:calc(100vh - 14px);
+border:solid 7px cornflowerblue;
+margin-left: auto;
+margin-right: auto;
+margin-top: 0px;
+font-size: 4em;
+}
+button{
+width:400px;
+height:350px;
+font-size: 60px;
+}
+}
+@media (min-width:1001px){ /* tablet, landscape iPad, lo-res laptops ands desktops */
+body{
+margin-top: 15px;
+color:cornflowerblue;
+background-color: white;
+margin-left: auto;
+margin-right: auto;
+border:solid 2px cornflowerblue;
+height:80vh;
+width:800px;
+max-width: 800px;
+min-height: 700px;
+font-size: 2em;
+
+}
+button{
+width:150px;
+height:100px;
+font-size: 20px;
+}
+}
+</style>
+</head><body>
+<center><p>random movement generator</p>
+<button onclick="randomMovement()" value="random" style="border:solid 1px cornflowerblue;color:cornflowerblue;
+">random movement button</button>
+<br>
+<p>Arms movement is:</p>
+<div id="movementArms" style="font-weight:700;"></div>
+<p>Torso movement is:</p>
+<div id="movementHips" style="font-weight:700;"></div>
+<p>legs movement is:</p>
+<div id="movementLegs" style="font-weight:700;"></div>
+</center>
+<script>
+  var random;
+  var arms = [];
+  var torso = [];
+  var legs = [];
+	
+$( document ).ready(function() {
+
+
+  //movement list
+//  var movements = ["movement one",
+//                   "movement two", 
+//                   "movement three"]
+  
+  $.getJSON("movements.js", function(data){
+			$.each(data.arms, function(i, val){
+				arms[i] = val;
+			});
+			$.each(data.torso, function(i, val){
+				torso[i] = val;
+			});
+			$.each(data.legs, function(i, val){
+				legs[i] = val;
+			});
+	});
+
+		
+  var pickedMovement;
+  var movementArms = document.getElementById("movementArms");
+  var movementHips = document.getElementById("movementHips");
+  var movementLegs = document.getElementById("movementLegs");
+
+    console.log("end of rady");
+
+}
+);
+
+ function randomMovement(){
+    //arms
+    random = Math.floor( Math.random() * arms.length);
+    pickedMovement = arms[ random ] ;
+    movementArms.innerHTML = pickedMovement;
+    //hips
+    random = Math.floor( Math.random() * torso.length);
+    pickedMovement = torso[ random ] ;
+    movementHips.innerHTML = pickedMovement;
+    //legs
+    random = Math.floor( Math.random() * legs.length);
+    pickedMovement = legs[ random ] ;
+    movementLegs.innerHTML = pickedMovement;
+  
+}
+</script>
+</body></html>
